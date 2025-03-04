@@ -2,8 +2,11 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 async function publishOnVinted(listingData) {
-  // Lancement du navigateur en mode headless
-  const browser = await puppeteer.launch({ headless: true });
+  // Lancement du navigateur en mode headless avec un executablePath
+  const browser = await puppeteer.launch({
+    headless: true,
+    executablePath: process.env.CHROME_PATH || '/usr/bin/chromium-browser'
+  });
   const page = await browser.newPage();
   await page.setDefaultNavigationTimeout(60000);
 
