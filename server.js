@@ -7,6 +7,11 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+// Route de vérification de santé
+app.get('/', (req, res) => {
+  res.status(200).send('OK');
+});
+
 app.post('/publish', async (req, res) => {
   try {
     const listingData = req.body;
