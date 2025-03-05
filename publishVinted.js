@@ -2,10 +2,11 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 async function publishOnVinted(listingData) {
-  // Lancement du navigateur en mode headless avec un executablePath mis à jour
+  // Lancement du navigateur en mode headless sans spécifier d'executablePath
+  // pour utiliser la version de Chromium téléchargée par Puppeteer
   const browser = await puppeteer.launch({
     headless: true,
-    executablePath: process.env.CHROME_PATH || '/usr/bin/chromium-browser'
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
   await page.setDefaultNavigationTimeout(60000);
