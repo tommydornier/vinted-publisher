@@ -2,8 +2,8 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 
 async function publishOnVinted(listingData) {
-  // Lancement du navigateur en mode headless sans spécifier d'executablePath
-  // pour utiliser la version de Chromium téléchargée par Puppeteer
+  // Lancement du navigateur en mode headless sans spécifier d'executablePath,
+  // ce qui permet à Puppeteer de télécharger et utiliser sa propre version de Chromium
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
