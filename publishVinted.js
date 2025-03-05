@@ -3,7 +3,7 @@ const path = require('path');
 
 async function publishOnVinted(listingData) {
   // Lancement du navigateur en mode headless sans spécifier d'executablePath,
-  // ce qui permet à Puppeteer de télécharger et utiliser sa propre version de Chromium
+  // ce qui permet à Puppeteer d'utiliser sa propre version de Chromium
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
@@ -32,8 +32,7 @@ async function publishOnVinted(listingData) {
 
   // Upload d’images
   const fileInput = await page.$('input[type="file"]');
-  // Ici, on suppose que vous avez déjà les images dans un dossier 'tmp' dans le repository.
-  // Pour tester, vous pouvez ajouter quelques images dans ce dossier ou ajuster la logique.
+  // On suppose que vous avez déjà les images dans un dossier 'tmp' dans le repository.
   await fileInput.uploadFile(
     path.resolve(__dirname, 'tmp', 'image1.jpg'),
     path.resolve(__dirname, 'tmp', 'image2.jpg')
